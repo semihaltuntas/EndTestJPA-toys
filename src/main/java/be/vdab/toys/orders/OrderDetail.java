@@ -17,4 +17,5 @@ public class OrderDetail {
     @JoinColumn(name = "productId")
     Product product;
 
+
 }
