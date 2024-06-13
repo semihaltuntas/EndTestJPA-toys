@@ -1,5 +1,7 @@
 package be.vdab.toys.products;
 
+import be.vdab.toys.orders.OnvoldoendeOrderException;
+import be.vdab.toys.orders.OnvoldoendeStockException;
 import be.vdab.toys.orders.OrderDetail;
 import be.vdab.toys.productlines.Productline;
 import jakarta.persistence.*;
@@ -41,6 +43,7 @@ public class Product {
         this.orderDetails = orderDetails;
     }
 
+
     public String getName() {
         return name;
     }
@@ -75,5 +78,19 @@ public class Product {
 
     public Set<OrderDetail> getOrderDetails() {
         return orderDetails;
+    }
+
+    public void setInStock(int inStock) {
+        if (inStock > this.inStock){
+            throw new OnvoldoendeStockException();
+        }
+        this.inStock -= inStock;
+    }
+
+    public void setInOrder(int inOrder) {
+        if (inOrder > this.inOrder){
+            throw new OnvoldoendeOrderException();
+        }
+        this.inOrder -= inOrder;
     }
 }

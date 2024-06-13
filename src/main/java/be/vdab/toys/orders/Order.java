@@ -76,4 +76,12 @@ public class Order {
     public Set<OrderDetail> getOrderDetails() {
         return orderDetails;
     }
+
+    public void setShipped(LocalDate shipped) {
+        this.shipped = shipped;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 }

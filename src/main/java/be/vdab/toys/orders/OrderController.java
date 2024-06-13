@@ -1,9 +1,6 @@
 package be.vdab.toys.orders;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -60,5 +57,10 @@ public class OrderController {
         return orderService.findByIdWithDetails(id)
                 .map(OrderBeknoptWithCustomerNameAndCountryNameAndTotaalOfValues::new)
                 .orElseThrow(OrderNietGevondenException::new);
+    }
+
+    @PostMapping("{id}/shippings")
+    void updateByOrderIdDeStockAndInOrderAndMarkOrderAsShippedWithSystemDate(@PathVariable long id){
+        orderService.updateByOrderId(id);
     }
 }
