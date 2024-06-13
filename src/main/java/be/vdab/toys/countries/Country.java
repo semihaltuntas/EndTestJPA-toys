@@ -15,7 +15,7 @@ public class Country {
     @Version
     private long version;
     @OneToMany(mappedBy = "country")
-    @OrderBy("naam")
+    @OrderBy("name")
     private Set<Customer> customers;
 
     protected Country() {

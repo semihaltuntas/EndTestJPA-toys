@@ -3,7 +3,9 @@ package be.vdab.toys.orders;
 import be.vdab.toys.customers.Customer;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "orders")
@@ -22,6 +24,8 @@ public class Order {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "customerId")
     private Customer customer;
+    @OneToMany(mappedBy = "order")
+    private Set<OrderDetail> orderDetails;
 
     protected Order() {
     }
@@ -34,6 +38,11 @@ public class Order {
         this.status = status;
         this.version = version;
         this.customer = customer;
+    }
+    public BigDecimal berekeningTotaalValues(){
+        return orderDetails.stream()
+                .map(orderDetail -> orderDetail.getValue())
+                .reduce(BigDecimal.ZERO,BigDecimal::add);
     }
 
     public long getId() {
@@ -62,5 +71,9 @@ public class Order {
 
     public Customer getCustomer() {
         return customer;
+    }
+
+    public Set<OrderDetail> getOrderDetails() {
+        return orderDetails;
     }
 }
