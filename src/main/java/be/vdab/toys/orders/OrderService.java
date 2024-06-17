@@ -44,7 +44,6 @@ public class OrderService {
         order.setShipped(LocalDate.now());
         order.setStatus(Status.SHIPPED);
         orderRepository.save(order);
-
     }
 }
 
