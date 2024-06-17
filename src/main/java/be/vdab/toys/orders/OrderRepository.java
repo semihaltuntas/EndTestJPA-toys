@@ -15,7 +15,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @EntityGraph(attributePaths = "customer")
     List<Order> findWithoutShippedAndCanceled();
 
-
     @Query("select o from Order o join fetch o.orderDetails od where o.id = :id order by od.product.name")
     Optional<Order> findById(long id);
 
