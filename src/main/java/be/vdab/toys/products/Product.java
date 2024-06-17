@@ -82,14 +82,14 @@ public class Product {
 
     public void setInStock(int inStock) {
         if (inStock > this.inStock){
-            throw new OnvoldoendeStockException();
+            throw new OnvoldoendeStockException("Onvoldoende Stock voor productId: " + id);
         }
         this.inStock -= inStock;
     }
 
     public void setInOrder(int inOrder) {
         if (inOrder > this.inOrder){
-            throw new OnvoldoendeOrderException();
+            throw new OnvoldoendeOrderException("Onvoldoende Order voor productId: " + id);
         }
         this.inOrder -= inOrder;
     }

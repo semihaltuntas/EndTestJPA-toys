@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.CONFLICT)
 public class OnvoldoendeOrderException extends RuntimeException {
 
-    public OnvoldoendeOrderException() {
-    super("Onvoldoende Order.");
+    public OnvoldoendeOrderException(String messeage) {
+    super(messeage);
     }
 }

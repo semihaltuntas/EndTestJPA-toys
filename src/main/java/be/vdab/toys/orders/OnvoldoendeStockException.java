@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.CONFLICT)
 public class OnvoldoendeStockException extends RuntimeException {
-    public OnvoldoendeStockException() {
-        super("Onvoldoende Stock.!");
+    public OnvoldoendeStockException(String message) {
+        super(message);
     }
 }

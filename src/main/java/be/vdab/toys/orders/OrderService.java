@@ -32,14 +32,10 @@ public class OrderService {
             throw new DezeOrderHeeftAlDeStatusShippedException();
         }
 
-        try{
-            order.getOrderDetails().forEach(orderDetail -> {
-                orderDetail.getProduct().setInOrder(orderDetail.getOrdered());
-                orderDetail.getProduct().setInStock(orderDetail.getOrdered());
-            });
-        }catch (OnvoldoendeStockException | OnvoldoendeOrderException ex){
-            System.out.println(ex.getMessage());
-        }
+        order.getOrderDetails().forEach(orderDetail -> {
+            orderDetail.getProduct().setInOrder(orderDetail.getOrdered());
+            orderDetail.getProduct().setInStock(orderDetail.getOrdered());
+        });
 
         order.setShipped(LocalDate.now());
         order.setStatus(Status.SHIPPED);
